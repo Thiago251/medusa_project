@@ -1,0 +1,17 @@
+# Exemplo de saída parcial nmap (adapte ao seu alvo)
+# nmap -sS -sV -A -p- 192.168.56.102 -oN nmap_full.txt
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2025-09-30 00:00
+Nmap scan report for 192.168.56.102
+Host is up (0.0010s latency).
+Not shown: 65531 closed ports
+PORT     STATE SERVICE    VERSION
+21/tcp   open  ftp        vsftpd 2.3.4
+22/tcp   open  ssh        OpenSSH 4.7p1
+23/tcp   open  telnet     Linux telnetd
+80/tcp   open  http       Apache httpd 2.2.8
+139/tcp  open  netbios-ssn Samba smbd 3.X
+445/tcp  open  microsoft-ds Samba smbd 3.X
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+# (Este é um exemplo; seus resultados variam conforme ambiente)

